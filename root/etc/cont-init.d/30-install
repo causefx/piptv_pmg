@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv bash
+echo 'Starting up m3u bot ...... lol... k thnx bye!'
+python3 -m piptv_pmg.pmg -o /m3u/channels.m3u
+CRON='0 */4 * * *'
+echo '[---------- Setting up CRON Job ----------]'
+echo "$CRON  python3 -m piptv_pmg.pmg -o /m3u/channels.m3u" > /etc/crontabs/root
+echo 'CRON Job has been set...'
+echo 'Starting CRON Service now...'
+crond -l 2 -f
